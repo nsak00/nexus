@@ -1,0 +1,172 @@
+/* ==========================================================================
+   NEXUS // The Gallery Collection
+   Hoja de estilos principal
+   ========================================================================== */
+
+:root {
+    --bg-museum: #120e0b;
+    --gold-master: #c9a35a;
+    --crimson-velvet: #7a1f2b;
+    --text-light: #f2e9dc;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-museum);
+    color: var(--text-light);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+::selection {
+    background: var(--gold-master);
+    color: var(--bg-museum);
+}
+
+/* Granulado cinemático de fondo */
+.noise-overlay {
+    position: fixed;
+    inset: -10%;
+    pointer-events: none;
+    z-index: 40;
+    opacity: 0.04;
+    background-image: repeating-linear-gradient(0deg, #000 0px, transparent 1px, transparent 2px);
+    animation: grain 1.2s steps(2) infinite;
+    mix-blend-mode: overlay;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-1%, -2%); }
+    30% { transform: translate(2%, 1%); }
+    50% { transform: translate(-1%, 2%); }
+    70% { transform: translate(1%, -1%); }
+    90% { transform: translate(-2%, 1%); }
+}
+
+/* Navegación fija */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    mix-blend-mode: difference;
+}
+
+/* Estilos de secciones */
+section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.container-center {
+    align-items: center;
+    text-align: center;
+}
+
+/* Contenedores de cuadros (sustitutos de modelos 3D ausentes) */
+.painting-frame {
+    position: relative;
+    width: min(72vw, 920px);
+    aspect-ratio: 16 / 10;
+    border: 1px solid rgba(201, 163, 90, 0.35);
+    box-shadow:
+        0 60px 120px -40px rgba(0, 0, 0, 0.9),
+        inset 0 0 0 10px rgba(22, 17, 13, 0.9),
+        inset 0 0 0 12px rgba(201, 163, 90, 0.4);
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6) contrast(1.1) sepia(0.2);
+    transition: filter 0.5s ease;
+}
+.painting-frame:hover {
+    filter: brightness(0.8) contrast(1.1) sepia(0.1);
+}
+
+/* Reliquias flotantes con glassmorphism */
+.floating-relic {
+    position: absolute;
+    width: min(24vw, 260px);
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(252, 243, 230, 0.4);
+    border-radius: 8px;
+    background: rgba(22, 17, 13, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), 0 0 70px -10px rgba(201, 163, 90, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    text-align: center;
+}
+
+.relic-image {
+    width: 85%;
+    height: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.7));
+}
+
+/* Tarjetas de la colección */
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.card-edition {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.card-thumb {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border: 1px solid rgba(201, 163, 90, 0.3);
+    border-radius: 6px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 30px 70px -25px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.5) grayscale(0.3);
+}
+
+/* Botón luxury */
+.btn-gold {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bg-museum);
+    background: var(--gold-master);
+    border: none;
+    padding: 20px 48px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 20px 50px -15px rgba(201, 163, 90, 0.5);
+    transition: all 0.3s ease;
+}
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 60px -10px rgba(201, 163, 90, 0.7);
+    background: #f6efe3;
+}
